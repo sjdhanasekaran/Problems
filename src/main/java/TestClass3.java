@@ -1,37 +1,80 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.util.Scanner;
+
 /*
 * PROBLEM STATEMENT Points: 30
-Today, you have been given the task of handling the entire Taxi Network of Berland City. Berland city has a huge number of taxi travellers, and you need to help them in transportation in the most efficient manner.
+Aniruddha is given a milestone M to reach in terms of distance. He is living in a different Galaxy where there are N days in a year.At the ith day he can walk atmost X distance.Assuming he walks optimally you need to output the minimum day number on which he will reach the milestone.
 
-To be precise, this city consists of N users who want to travel via a Taxi today. You have a total of M taxis and need to cater to the users using these taxis. Each user has two parameters associated with them,  and , denoting the time at which a user requests a taxi and the travel time required to reach the destination of this particular user. Each taxi can be used by a maximum of 1 user at each point in time.
+Input
 
-If, at any point in time a user requests a taxi and all M taxis are busy, then this user's request is rejected. If multiple taxis are available at the time of the request of a user, the taxi with the lowest index that is available is alloted to them. Now, you need to find for each user, the index of the taxi alloted to them. If a particular user's request is rejected, print "-1" (without quotes) for them.
+The first input line contains the T number of testcases. Each testcase consist of three lines First line consist of single integer N — the number of days in a year.
 
-Note: For the purpose of the problem, we consider a user gets their taxi immediately if their request is accepted. The taxi's are enumerated from 1 to M. A taxi is considered to be free as soon as the previous user's journey ends. It is guaranteed that the request time of each user is unique.
+Next line contains N non-negative space-separated numbers— i.e. distance which Aniruddha will walk on ith day. It is guaranteed that at least one of those numbers is greater than zero.
 
-Input Format:
+And the third line consist of the value of milestone which Aniruddha has to reach.
 
-The first line contains two integers N and M denoting the number of users and the number of taxis respectively. Each of the next N lines contains 2 space separated integers  and  denoting the request and journey time of the  user.
+Output
 
-Output Format:
+For each testcase you need to output the answer to the following query.
 
-For each user from 1 to N, print the index number of the taxi alloted to them. If a user's request is rejected , print "-1"(without quotes) for them.
+Constraints
 
-Constraints:
+1<=T<= 10
 
+1<=N<=10^5
 
+0<=X<=10^8
 
+0<=M<=10^16
 
 SAMPLE INPUT
-5 5
-1 100
-2 100
-3 100
-4 100
-5 100
+2
+5
+1 5 0 0 2
+9
+3
+1 0 3
+2
 SAMPLE OUTPUT
-1 2 3 4 5
+1
+3
 Explanation
-Here, user 1 is given taxi 1, user 2 is given taxi 2, user 3 is given taxi 3 and so on for user 4and 5.
-* */
+For the first testcase we have to reach a milestone of 9 units. On the 1st day we would cover at most 1 unit.On the 2nd day we would cover at most 5 units.So total distance covered till 2nd day is 6 units.On 3rd and 4th day he would not cover any distance as value of X on those days is 0. On the 5th day he would cover at most 2 units. So total distance covered till 5th day is 8 units.Then he will go to the first day of the next year.So total distance covered till 1st day will now become 9 units which is equal to the milestone. So answer is 1.
+
+Similarly answer for second testcase is 3.
+*/
 public class TestClass3 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String te = br.readLine();
+        int not = Integer.parseInt(te);
+        while (not-- > 0) {
+            String c = br.readLine();
+            String x=br.readLine();
+            String y=br.readLine();
+
+            long n=Long.parseLong(c);
+            String[] split = x.split(" ");
+            long m=Long.parseLong(y);
+            long count=0;
+            int i=0;
+            while (i<n) {
+                long r = Long.parseLong(split[i]);
+                count += r;
+                if(count>=m){
+                    System.out.println(i+1);
+                    break;
+                }
+                if(i==n-1){
+                    i=0;
+                }else {
+                    i++;
+                }
+            }
+            }
+        }
+
 }
